@@ -1,6 +1,6 @@
 // Thanks to ReactDOMFactories for this handy list!
 
-export const domElements = [
+export const _domElements = [
   "a",
   "abbr",
   "address",
@@ -138,4 +138,4 @@ export const domElements = [
   "svg",
   "text",
   "tspan",
-];
+] as const; // we use const for Typescript inference.
