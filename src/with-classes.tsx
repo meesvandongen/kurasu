@@ -30,18 +30,14 @@ type WithClasses = WithClassesMain & DynamicFunctions;
 
 const withClasses = function (Component, extraClasses) {
   return (_props) => {
-    const { className, children, ...rest } = _props;
+    const { className, ...rest } = _props;
 
     const _extraClasses =
       typeof extraClasses === "string"
         ? extraClasses
         : extraClasses(_props, clsx);
 
-    const _combinedProps = {
-      className: clsx(_extraClasses, className),
-      ...rest,
-    };
-    return React.createElement(Component, _combinedProps as any, children);
+    return <Component className={clsx(_extraClasses, className)} {...rest as any} />
   };
 } as WithClasses;
 
