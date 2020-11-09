@@ -11,7 +11,12 @@ type WithClassesComponentProps = {
 interface WithClassesMain {
   <P extends WithClassesComponentProps & object>(
     Component: React.ComponentType<P> | DomElements,
-    extraClasses: string | ((props: P, classUtility: typeof clsx) => string)
+    extraClasses:
+      | string
+      | ((
+          props: Omit<P, "className"> & WithClassesComponentProps,
+          classUtility: typeof clsx
+        ) => string)
   ): React.ComponentType<Omit<P, "className"> & WithClassesComponentProps>;
 }
 
