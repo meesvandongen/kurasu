@@ -10,7 +10,7 @@ A Higher Order Component (HOC) for adding classes to React Components and Dom El
 # Installation
 
 ```sh
-npm i klass
+npm i kurasu
 yarn add kurasu
 pnpm i kurasu
 ```
