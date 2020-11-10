@@ -165,7 +165,16 @@ describe("With Classes", () => {
     const TestComponent = withClasses.button<{ isOpen: boolean }>(
       (props) => props.isOpen && "123"
     );
-    render(<TestComponent />);
+    render(<TestComponent isOpen={true} />);
+    expect(screen.getByRole("button")).toHaveClass("test-class");
+  });
+
+  it("should allow using inline typing for elements passed to main function", () => {
+    const TestComponent = withClasses<{ isOpen: boolean }>(
+      "button",
+      (props) => props.isOpen && "123"
+    );
+    render(<TestComponent isOpen={true} />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
 });
