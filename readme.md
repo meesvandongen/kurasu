@@ -1,4 +1,4 @@
-# Klasse
+# Kurasu
 
 A Higher Order Component (HOC) for adding classes to React Components and Dom Elements. Excellent for use with css utility libraries such as tailwind.
 
@@ -11,8 +11,8 @@ A Higher Order Component (HOC) for adding classes to React Components and Dom El
 
 ```sh
 npm i klass
-yarn add klasse
-pnpm i klasse
+yarn add kurasu
+pnpm i kurasu
 ```
 
 # API
@@ -20,7 +20,7 @@ pnpm i klasse
 ## Main Function
 
 ```ts
-klasse(Component, classNames);
+kurasu(Component, classNames);
 ```
 
 ### Arguments
@@ -42,7 +42,7 @@ klasse(Component, classNames);
 ## Element Shorthands
 
 ```ts
-klasse.element(classNames);
+kurasu.element(classNames);
 ```
 
 ### Arguments
@@ -62,8 +62,8 @@ Return a React Component with added classNames. Any classNames you pass to this 
 ## Basic usage
 
 ```tsx
-import klasse from "klasse";
-const RoundedButton = klasse.button("rounded p-4");
+import kurasu from "kurasu";
+const RoundedButton = kurasu.button("rounded p-4");
 
 const Usage = () => (
   <RoundedButton onClick={doSomething}>Button Title</RoundedButton>
@@ -73,9 +73,9 @@ const Usage = () => (
 ## With Component
 
 ```tsx
-import klasse from "klasse";
+import kurasu from "kurasu";
 import { SomeButton } from "./my-react-buttons";
-const SomeRoundedButton = klasse(SomeButton, "rounded p-4");
+const SomeRoundedButton = kurasu(SomeButton, "rounded p-4");
 
 const Usage = () => (
   <SomeRoundedButton onClick={doSomething}>Button Title</SomeRoundedButton>
@@ -85,8 +85,8 @@ const Usage = () => (
 ## With props
 
 ```tsx
-import klasse from "klasse";
-const WarningButton = klasse.button<{ warning: boolean }>(
+import kurasu from "kurasu";
+const WarningButton = kurasu.button<{ warning: boolean }>(
   (props) => props.warning && "bg-red-100"
 );
 
@@ -100,8 +100,8 @@ const Usage = () => (
 ## With props and props helper
 
 ```tsx
-import klasse from "klasse";
-const RoundedWarningButton = klasse.button<{ warning: boolean }>(
+import kurasu from "kurasu";
+const RoundedWarningButton = kurasu.button<{ warning: boolean }>(
   (props, helper) => helper([props.warning && "bg-red-100", "rounded p-4"])
 );
 

@@ -8,7 +8,7 @@ type OptionalClassProps = {
   className?: string;
 };
 
-interface KlasseBase {
+interface KurasuBase {
   <Props extends OptionalClassProps>(
     Component: React.ComponentType<Props> | DomElement,
     extraClasses:
@@ -52,10 +52,10 @@ type DynamicFunctions = {
   >;
 };
 
-type Klasse = KlasseBase & DynamicFunctions;
+type Kurasu = KurasuBase & DynamicFunctions;
 
 // @ts-ignore
-const klasse = function (Component, extraClasses) {
+const kurasu = function (Component, extraClasses) {
   // @ts-ignore
   return (_props) => {
     const { className, ...rest } = _props;
@@ -72,13 +72,13 @@ const klasse = function (Component, extraClasses) {
       />
     );
   };
-} as Klasse;
+} as Kurasu;
 
 _domElements.forEach((_domElement: DomElement) => {
   // The type of the main function and the subfunctions are not quite compatible...
   // TODO: make sure this passes.
   // @ts-ignore
-  klasse[_domElement] = (className: string) => klasse(_domElement, className);
+  kurasu[_domElement] = (className: string) => kurasu(_domElement, className);
 });
 
-export default klasse;
+export default kurasu;
