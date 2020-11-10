@@ -1,11 +1,11 @@
-import withClasses from "./with-classes";
+import klasse from "./klasse";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
 
 describe("With Classes", () => {
   it("renders an element with a class", () => {
-    const TestComponent = withClasses.button("test-class");
+    const TestComponent = klasse.button("test-class");
     render(<TestComponent />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
@@ -14,7 +14,7 @@ describe("With Classes", () => {
     const TestWrappedComponent = ({ className }: { className: string }) => {
       return <button className={className}>{className}</button>;
     };
-    const TestComponent = withClasses(TestWrappedComponent, "test-class");
+    const TestComponent = klasse(TestWrappedComponent, "test-class");
     render(<TestComponent />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
@@ -23,14 +23,14 @@ describe("With Classes", () => {
     const TestWrappedComponent = ({ className }: { className: string }) => (
       <button className={className}>{className}</button>
     );
-    const TestComponent = withClasses(TestWrappedComponent, "test-class");
+    const TestComponent = klasse(TestWrappedComponent, "test-class");
     render(<TestComponent className="test-class-2" />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
     expect(screen.getByRole("button")).toHaveClass("test-class-2");
   });
 
   it("should allow using function notation in withClasses element shorthand", () => {
-    const TestComponent = withClasses.button(() => "test-class");
+    const TestComponent = klasse.button(() => "test-class");
     render(<TestComponent />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
@@ -39,7 +39,7 @@ describe("With Classes", () => {
     const TestWrappedComponent = ({ className }: { className: string }) => (
       <button className={className}>{className}</button>
     );
-    const TestComponent = withClasses(TestWrappedComponent, () => "test-class");
+    const TestComponent = klasse(TestWrappedComponent, () => "test-class");
     render(<TestComponent />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
@@ -52,7 +52,7 @@ describe("With Classes", () => {
       someProp: string;
       className: string;
     }) => <button className={className}>{someProp}</button>;
-    const TestComponent = withClasses(
+    const TestComponent = klasse(
       TestWrappedComponent,
       (props) => props.someProp
     );
@@ -84,7 +84,7 @@ describe("With Classes", () => {
      * We create a specific instance of the button component, that, when open,
      * will have a is-open class.
      */
-    const TestComponent = withClasses(
+    const TestComponent = klasse(
       TestButtonComponent,
       (props) => props.isOpen && "is-open"
     );
@@ -135,7 +135,7 @@ describe("With Classes", () => {
      * We create a specific instance of the button component, that, when open,
      * will have a is-open class.
      */
-    const TestComponent = withClasses(TestButtonComponent, (props, helper) =>
+    const TestComponent = klasse(TestButtonComponent, (props, helper) =>
       helper(props.isOpen && "is-open")
     );
 
@@ -162,7 +162,7 @@ describe("With Classes", () => {
   });
 
   it("should allow using inline typing for elements", () => {
-    const TestComponent = withClasses.button<{ isOpen: boolean }>(
+    const TestComponent = klasse.button<{ isOpen: boolean }>(
       (props) => props.isOpen && "123"
     );
     render(<TestComponent isOpen={true} />);
@@ -170,7 +170,7 @@ describe("With Classes", () => {
   });
 
   it("should allow using inline typing for elements passed to main function", () => {
-    const TestComponent = withClasses<{ isOpen: boolean }>(
+    const TestComponent = klasse<{ isOpen: boolean }>(
       "button",
       (props) => props.isOpen && "123"
     );

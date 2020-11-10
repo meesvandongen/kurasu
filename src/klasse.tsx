@@ -4,20 +4,20 @@ import { _domElements } from "./utils/dom-elements";
 
 type DomElement = keyof JSX.IntrinsicElements;
 
-type WithClassesComponentProps = {
+type OptionalClassProps = {
   className?: string;
 };
 
-interface WithClassesMain {
-  <Props extends WithClassesComponentProps>(
+interface KlasseBase {
+  <Props extends OptionalClassProps>(
     Component: React.ComponentType<Props> | DomElement,
     extraClasses:
       | string
       | ((
-          props: Omit<Props, "className"> & WithClassesComponentProps,
+          props: Omit<Props, "className"> & OptionalClassProps,
           classUtility: typeof clsx
         ) => string)
-  ): React.ComponentType<Omit<Props, "className"> & WithClassesComponentProps>;
+  ): React.ComponentType<Omit<Props, "className"> & OptionalClassProps>;
 
   <
     ExtraProps = {},
@@ -28,12 +28,11 @@ interface WithClassesMain {
     extraClasses:
       | string
       | ((
-          props: Omit<Props & ExtraProps, "className"> &
-            WithClassesComponentProps,
+          props: Omit<Props & ExtraProps, "className"> & OptionalClassProps,
           classUtility: typeof clsx
         ) => string)
   ): React.ComponentType<
-    Omit<Props & ExtraProps, "className"> & WithClassesComponentProps
+    Omit<Props & ExtraProps, "className"> & OptionalClassProps
   >;
 }
 
@@ -45,18 +44,17 @@ type DynamicFunctions = {
     extraClasses:
       | string
       | ((
-          props: Omit<Props & ExtraProps, "className"> &
-            WithClassesComponentProps,
+          props: Omit<Props & ExtraProps, "className"> & OptionalClassProps,
           classUtility: typeof clsx
         ) => string)
   ) => React.ComponentType<
-    Omit<Props & ExtraProps, "className"> & WithClassesComponentProps
+    Omit<Props & ExtraProps, "className"> & OptionalClassProps
   >;
 };
 
-type WithClasses = WithClassesMain & DynamicFunctions;
+type Klasse = KlasseBase & DynamicFunctions;
 
-const withClasses = function (Component, extraClasses) {
+const klasse = function (Component, extraClasses) {
   return (_props) => {
     const { className, ...rest } = _props;
 
@@ -72,13 +70,13 @@ const withClasses = function (Component, extraClasses) {
       />
     );
   };
-} as WithClasses;
+} as Klasse;
 
 _domElements.forEach((_domElement: DomElement) => {
   // The type of the main function and the subfunctions are not quite compatible...
+  // TODO: make sure this passes.
   // @ts-ignore
-  withClasses[_domElement] = (className: string) =>
-    withClasses(_domElement, className);
+  klasse[_domElement] = (className: string) => klasse(_domElement, className);
 });
 
-export default withClasses;
+export default klasse;

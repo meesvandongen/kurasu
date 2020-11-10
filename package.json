@@ -1,9 +1,9 @@
 {
-  "name": "with-classes",
-  "source": "src/with-classes.tsx",
-  "main": "dist/with-classes.js",
-  "module": "dist/with-classes.module.js",
-  "unpkg": "dist/with-classes.umd.js",
+  "name": "klasse",
+  "source": "src/klasse.tsx",
+  "main": "dist/klasse.js",
+  "module": "dist/klasse.module.js",
+  "unpkg": "dist/klasse.umd.js",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch --jsx React.createElement",
