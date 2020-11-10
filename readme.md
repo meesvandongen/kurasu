@@ -2,8 +2,9 @@
 
 A Higher Order Component (HOC) for adding classes to React Components and Dom Elements. Excellent for use with css utility libraries such as tailwind.
 
-- 🤏 Small at around 1KB.
+- 🐁 Small at around 1KB.
 - 🦍 Powerful API with the help of clsx/classnames
+- 🦖 Typescript Support
 - 🔥 Blazing fast, probably...
 
 # Installation

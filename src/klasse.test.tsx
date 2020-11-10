@@ -163,7 +163,7 @@ describe("With Classes", () => {
 
   it("should allow using inline typing for elements", () => {
     const TestComponent = klasse.button<{ isOpen: boolean }>(
-      (props) => props.isOpen && "123"
+      (props) => props.isOpen && "test-class"
     );
     render(<TestComponent isOpen={true} />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
@@ -172,7 +172,7 @@ describe("With Classes", () => {
   it("should allow using inline typing for elements passed to main function", () => {
     const TestComponent = klasse<{ isOpen: boolean }>(
       "button",
-      (props) => props.isOpen && "123"
+      (props) => props.isOpen && "test-class"
     );
     render(<TestComponent isOpen={true} />);
     expect(screen.getByRole("button")).toHaveClass("test-class");

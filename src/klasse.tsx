@@ -1,6 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
-import { _domElements } from "./utils/dom-elements";
+import { _domElements } from "./dom-elements";
 
 type DomElement = keyof JSX.IntrinsicElements;
 
@@ -54,7 +54,9 @@ type DynamicFunctions = {
 
 type Klasse = KlasseBase & DynamicFunctions;
 
+// @ts-ignore
 const klasse = function (Component, extraClasses) {
+  // @ts-ignore
   return (_props) => {
     const { className, ...rest } = _props;
 
