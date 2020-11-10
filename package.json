@@ -34,5 +34,6 @@
   },
   "mangle": {
     "regex": "^_"
-  }
+  },
+  "license": "MIT"
 }
