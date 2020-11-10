@@ -1,6 +1,6 @@
 {
   "name": "kurasu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "source": "src/kurasu.tsx",
   "main": "dist/kurasu.js",
   "module": "dist/kurasu.module.js",
@@ -14,6 +14,15 @@
     "publish": "pnpm run clean && pnpm run build && pnpm publish"
   },
   "author": "Mees van Dongen",
+  "keywords": [
+    "react",
+    "hoc",
+    "classnames",
+    "clsx",
+    "tailwind",
+    "css",
+    "styling"
+  ],
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
