@@ -1,5 +1,6 @@
 {
   "name": "klasse",
+  "version": "1.0.0",
   "source": "src/klasse.tsx",
   "main": "dist/klasse.js",
   "module": "dist/klasse.module.js",
