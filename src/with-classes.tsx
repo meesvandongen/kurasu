@@ -2,28 +2,56 @@ import * as React from "react";
 import clsx from "clsx";
 import { _domElements } from "./utils/dom-elements";
 
-type DomElements = typeof _domElements[number];
+type DomElement = keyof JSX.IntrinsicElements;
 
 type WithClassesComponentProps = {
   className?: string;
 };
 
 interface WithClassesMain {
-  <P extends WithClassesComponentProps & object>(
-    Component: React.ComponentType<P> | DomElements,
+  <Props extends WithClassesComponentProps>(
+    Component: React.ComponentType<Props> | DomElement,
     extraClasses:
       | string
       | ((
-          props: Omit<P, "className"> & WithClassesComponentProps,
+          props: Omit<Props, "className"> & WithClassesComponentProps,
           classUtility: typeof clsx
         ) => string)
-  ): React.ComponentType<Omit<P, "className"> & WithClassesComponentProps>;
+  ): React.ComponentType<Omit<Props, "className"> & WithClassesComponentProps>;
+
+  <
+    ExtraProps = {},
+    Tag extends DomElement = DomElement,
+    Props extends JSX.IntrinsicElements[Tag] = JSX.IntrinsicElements[Tag]
+  >(
+    Component: Tag,
+    extraClasses:
+      | string
+      | ((
+          props: Omit<Props & ExtraProps, "className"> &
+            WithClassesComponentProps,
+          classUtility: typeof clsx
+        ) => string)
+  ): React.ComponentType<
+    Omit<Props & ExtraProps, "className"> & WithClassesComponentProps
+  >;
 }
 
 type DynamicFunctions = {
-  [K in DomElements]: (
-    extraClasses: string | ((props: any, classUtility: typeof clsx) => string)
-  ) => ReturnType<WithClassesMain>;
+  [Tag in DomElement]: <
+    ExtraProps = {},
+    Props extends JSX.IntrinsicElements[Tag] = JSX.IntrinsicElements[Tag]
+  >(
+    extraClasses:
+      | string
+      | ((
+          props: Omit<Props & ExtraProps, "className"> &
+            WithClassesComponentProps,
+          classUtility: typeof clsx
+        ) => string)
+  ) => React.ComponentType<
+    Omit<Props & ExtraProps, "className"> & WithClassesComponentProps
+  >;
 };
 
 type WithClasses = WithClassesMain & DynamicFunctions;
@@ -37,11 +65,18 @@ const withClasses = function (Component, extraClasses) {
         ? extraClasses
         : extraClasses(_props, clsx);
 
-    return <Component className={clsx(_extraClasses, className)} {...rest as any} />
+    return (
+      <Component
+        className={clsx(_extraClasses, className)}
+        {...(rest as any)}
+      />
+    );
   };
 } as WithClasses;
 
-_domElements.forEach((_domElement: DomElements) => {
+_domElements.forEach((_domElement: DomElement) => {
+  // The type of the main function and the subfunctions are not quite compatible...
+  // @ts-ignore
   withClasses[_domElement] = (className: string) =>
     withClasses(_domElement, className);
 });
