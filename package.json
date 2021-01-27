@@ -1,6 +1,6 @@
 {
   "name": "kurasu",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "source": "src/kurasu.tsx",
   "main": "dist/kurasu.js",
   "module": "dist/kurasu.module.js",
@@ -23,6 +23,11 @@
     "css",
     "styling"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/meesvandongen/kurasu.git"
+  },
+  "homepage": "https://gitlab.com/meesvandongen/kurasu",
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",

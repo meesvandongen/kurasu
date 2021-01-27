@@ -177,4 +177,19 @@ describe("With Classes", () => {
     render(<TestComponent isOpen={true} />);
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
+
+  it("should allow using refs", () => {
+    const spy = jest.fn();
+    const TestComponent = kurasu.button("");
+    render(
+      <TestComponent
+        ref={(_ref) => {
+          spy(_ref && _ref.textContent);
+        }}
+      >
+        test content
+      </TestComponent>
+    );
+    expect(spy).toHaveBeenCalledWith("test content");
+  });
 });

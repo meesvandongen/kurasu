@@ -57,7 +57,8 @@ type Kurasu = KurasuBase & DynamicFunctions;
 // @ts-ignore
 const kurasu = function (Component, extraClasses) {
   // @ts-ignore
-  return (_props) => {
+  return React.forwardRef((_props, ref) => {
+    // @ts-ignore
     const { className, ...rest } = _props;
 
     const _extraClasses =
@@ -67,11 +68,12 @@ const kurasu = function (Component, extraClasses) {
 
     return (
       <Component
+        ref={ref}
         className={clsx(_extraClasses, className)}
         {...(rest as any)}
       />
     );
-  };
+  });
 } as Kurasu;
 
 _domElements.forEach((_domElement: DomElement) => {
