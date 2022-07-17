@@ -1,7 +1,7 @@
 import kurasu from "./kurasu";
-import { render, screen } from "@testing-library/react";
-import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { useState } from "react";
 
 describe("With Classes", () => {
   it("renders an element with a class", () => {
@@ -93,7 +93,7 @@ describe("With Classes", () => {
      * A parent component which manages the isOpen state of the child.
      */
     const ParentComponent = () => {
-      const [isOpen, setIsOpen] = React.useState(false);
+      const [isOpen, setIsOpen] = useState(false);
 
       return (
         <TestComponent
@@ -107,7 +107,7 @@ describe("With Classes", () => {
 
     const buttonElement = screen.getByRole("button");
     expect(buttonElement).not.toHaveClass("is-open");
-    buttonElement.click();
+    fireEvent.click(buttonElement);
     expect(buttonElement).toHaveClass("is-open");
   });
 
@@ -143,7 +143,7 @@ describe("With Classes", () => {
      * A parent component which manages the isOpen state of the child.
      */
     const ParentComponent = () => {
-      const [isOpen, setIsOpen] = React.useState(false);
+      const [isOpen, setIsOpen] = useState(false);
 
       return (
         <TestComponent
@@ -157,7 +157,7 @@ describe("With Classes", () => {
 
     const buttonElement = screen.getByRole("button");
     expect(buttonElement).not.toHaveClass("is-open");
-    buttonElement.click();
+    fireEvent.click(buttonElement);
     expect(buttonElement).toHaveClass("is-open");
   });
 

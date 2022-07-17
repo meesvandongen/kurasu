@@ -1,6 +1,7 @@
 # Kurasu
 
-A Higher Order Component (HOC) for adding classes to React Components and Dom Elements. Excellent for use with css utility libraries such as tailwind.
+A Higher Order Component (HOC) for adding classes to React Components and Dom
+Elements. Excellent for use with css utility libraries such as tailwind.
 
 - 🐁 Small at around 1KB.
 - 🦍 Powerful API with the help of clsx/classnames
@@ -20,7 +21,7 @@ pnpm i kurasu
 ## Main Function
 
 ```ts
-kurasu(Component, classNames);
+const ComponentWithClasses = kurasu(Component, classNames);
 ```
 
 ### Arguments
@@ -35,7 +36,8 @@ kurasu(Component, classNames);
 
 ### Returns
 
-- Return a React Component with added classNames. Any classNames you pass to this returned component will be merged.
+- Return a React Component with added classNames. Any classNames you pass to
+  this returned component will be merged.
 
 ---
 
@@ -55,7 +57,8 @@ kurasu.element(classNames);
 
 ### Returns
 
-Return a React Component with added classNames. Any classNames you pass to this returned component will be merged.
+Return a React Component with added classNames. Any classNames you pass to this
+returned component will be merged.
 
 # Examples
 
