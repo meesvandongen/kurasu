@@ -1,3 +1,10 @@
+# [2.0.0-next.2](https://gitlab.com/meesvandongen/kurasu/compare/v2.0.0-next.1...v2.0.0-next.2) (2022-07-20)
+
+
+### Features
+
+* don't forward elements that are unknown to elements (but do forward them to components) ([415072a](https://gitlab.com/meesvandongen/kurasu/commit/415072aba734777fcddb68b58b68b54f79ddbe35))
+
 # [2.0.0-next.1](https://gitlab.com/meesvandongen/kurasu/compare/v1.1.0...v2.0.0-next.1) (2022-07-17)
 
 
