@@ -178,6 +178,28 @@ describe("With Classes", () => {
     expect(screen.getByRole("button")).toHaveClass("test-class");
   });
 
+  it("should not forward unknown props to elements", () => {
+    const TestComponent = kurasu.button<{ isOpen: boolean }>("");
+    render(<TestComponent isOpen={true} />);
+    expect(screen.getByRole("button")).not.toHaveAttribute("isOpen");
+  });
+
+  it("should forward unknown props to components", () => {
+    const Button = jest.fn((props: { isOpen: boolean; className: string }) => (
+      <button>test</button>
+    ));
+
+    const TestComponent = kurasu(Button, "");
+    render(<TestComponent isOpen={true} />);
+    expect(Button).toHaveBeenCalledWith(
+      expect.objectContaining({
+        isOpen: true,
+        className: "",
+      }),
+      expect.anything()
+    );
+  });
+
   it("should allow using refs", () => {
     const spy = jest.fn();
     const TestComponent = kurasu.button("");

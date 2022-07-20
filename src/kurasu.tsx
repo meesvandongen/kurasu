@@ -1,6 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { _domElements } from "./dom-elements";
+import { filterElementProps } from "./filter-element-props";
 
 type DomElement = keyof JSX.IntrinsicElements;
 
@@ -66,11 +67,13 @@ const kurasu = function (Component, extraClasses) {
         ? extraClasses
         : extraClasses(_props, clsx);
 
+    const isElement = typeof Component === "string";
+
     return (
       <Component
         ref={ref}
         className={clsx(_extraClasses, className)}
-        {...(rest as any)}
+        {...(isElement ? filterElementProps(rest) : rest)}
       />
     );
   });
