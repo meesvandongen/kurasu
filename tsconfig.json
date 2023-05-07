@@ -1,9 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "skipLibCheck": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "Node"
-  }
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "types": [
+      "vitest/globals",
+      "vitest/importMeta",
+      "@testing-library/jest-dom"
+    ],
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "./docs.ts"]
 }

@@ -1,33 +1,27 @@
-image: node:16
+stages:
+  - comment
+  - main
 
-build:
-  stage: build
-  script:
-    - npm install
-    - npm run build
-  artifacts:
-    paths:
-      - node_modules
-      - dist
-      - docs
-
-test:
-  stage: test
-  script:
-    - npm run test
-  needs:
-    - job: build
-      artifacts: true
-
-publish:
-  stage: deploy
-  needs:
-    - job: build
-      artifacts: true
-    - job: test
-      artifacts: false
-  script:
-    - npx semantic-release
+comment:
+  image: node:lts
+  stage: comment
   only:
-    - master
-    - next
+    - merge_requests
+  script: npx -y changesets-gitlab comment
+
+main:
+  image: node:lts
+  stage: main
+  only:
+    - main
+  script:
+    - npm install -g pnpm
+    - pnpm i --frozen-lockfile
+    - pnpm run build
+    - pnpm run test
+    - |
+      if [ "$CI_COMMIT_BRANCH" = "main" ]; then
+        npx changesets-gitlab
+      fi
+  variables:
+    INPUT_PUBLISH: pnpm publish -r --no-git-checks

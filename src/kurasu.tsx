@@ -1,7 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
-import { _domElements } from "./dom-elements";
 import { filterElementProps } from "./filter-element-props";
+import { twMerge } from "tailwind-merge";
 
 type DomElement = keyof JSX.IntrinsicElements;
 
@@ -9,81 +9,68 @@ type OptionalClassProps = {
   className?: string;
 };
 
-interface KurasuBase {
-  <Props extends OptionalClassProps>(
-    Component: React.ComponentType<Props> | DomElement,
-    extraClasses:
-      | string
-      | ((
-          props: Omit<Props, "className"> & OptionalClassProps,
-          classUtility: typeof clsx
-        ) => string)
-  ): React.ComponentType<Omit<Props, "className"> & OptionalClassProps>;
+type DomElementsWithClasses<
+  T extends JSX.IntrinsicElements = JSX.IntrinsicElements
+> = {
+  [K in keyof T]: T[K] extends OptionalClassProps ? T[K] : never;
+};
 
+interface Kurasu {
+  // Kurasu Element
   <
     ExtraProps = {},
-    Tag extends DomElement = DomElement,
+    Tag extends keyof DomElementsWithClasses = keyof DomElementsWithClasses,
     Props extends JSX.IntrinsicElements[Tag] = JSX.IntrinsicElements[Tag]
   >(
     Component: Tag,
     extraClasses:
       | string
+      | false
       | ((
           props: Omit<Props & ExtraProps, "className"> & OptionalClassProps,
           classUtility: typeof clsx
-        ) => string)
+        ) => string | false)
   ): React.ComponentType<
     Omit<Props & ExtraProps, "className"> & OptionalClassProps
   >;
-}
 
-type DynamicFunctions = {
-  [Tag in DomElement]: <
-    ExtraProps = {},
-    Props extends JSX.IntrinsicElements[Tag] = JSX.IntrinsicElements[Tag]
-  >(
+  // Kurasu Component
+  <Props extends OptionalClassProps>(
+    Component: React.ComponentType<Props> | DomElement,
     extraClasses:
       | string
+      | false
       | ((
-          props: Omit<Props & ExtraProps, "className"> & OptionalClassProps,
+          props: Omit<Props, "className"> & OptionalClassProps,
           classUtility: typeof clsx
-        ) => string)
-  ) => React.ComponentType<
-    Omit<Props & ExtraProps, "className"> & OptionalClassProps
-  >;
-};
-
-type Kurasu = KurasuBase & DynamicFunctions;
+        ) => string | false)
+  ): React.ComponentType<Omit<Props, "className"> & OptionalClassProps>;
+}
 
 // @ts-ignore
 const kurasu = function (Component, extraClasses) {
   // @ts-ignore
   return React.forwardRef((_props, ref) => {
     // @ts-ignore
-    const { className, ...rest } = _props;
+    const { className, ..._restProps } = _props;
 
-    const _extraClasses =
+    const isElement = typeof Component === "string";
+
+    const _extraClasses: string | false =
       typeof extraClasses === "string"
         ? extraClasses
         : extraClasses(_props, clsx);
 
-    const isElement = typeof Component === "string";
+    const restProps = isElement ? filterElementProps(_restProps) : _restProps;
 
     return (
       <Component
         ref={ref}
-        className={clsx(_extraClasses, className)}
-        {...(isElement ? filterElementProps(rest) : rest)}
+        className={twMerge(_extraClasses, className)}
+        {...restProps}
       />
     );
   });
 } as Kurasu;
-
-_domElements.forEach((_domElement: DomElement) => {
-  // The type of the main function and the subfunctions are not quite compatible...
-  // TODO: make sure this passes.
-  // @ts-ignore
-  kurasu[_domElement] = (className: string) => kurasu(_domElement, className);
-});
 
 export default kurasu;

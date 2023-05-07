@@ -1,0 +1,11 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.spec.ts,${capture}.test.ts",
+    "*.tsx": "${capture}.spec.tsx,${capture}.test.tsx"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["kurasu.*\\(.*?,([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"]
+  ]
+}
