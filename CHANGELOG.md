@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.0.1
+
+### Patch Changes
+
+- af86e6b: Add CJS export because nextjs is still widely used and does not properly support esm only.
+
 ### Major Changes
 
 - ac18eb2: kurasu will from now on only be released in esm format.
