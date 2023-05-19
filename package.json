@@ -21,9 +21,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/meesvandongen/kurasu.git"
+    "url": "https://github.com/meesvandongen/kurasu.git"
   },
-  "homepage": "https://gitlab.com/meesvandongen/kurasu",
+  "homepage": "https://github.com/meesvandongen/kurasu",
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
     "@testing-library/jest-dom": "^5.16.5",
