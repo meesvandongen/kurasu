@@ -53,6 +53,9 @@
       "require": "./dist/kurasu.cjs"
     }
   },
+  "types": "./dist/kurasu.d.ts",
+  "main": "./dist/kurasu.cjs",
+  "module": "./dist/kurasu.js",
   "peerDependencies": {
     "react": ">=16.8",
     "react-dom": ">=16.8"
