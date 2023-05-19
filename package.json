@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsup",
     "test": "vitest",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "release": "pnpm run build && pnpm run test && changeset publish"
   },
   "type": "module",
   "author": "Mees van Dongen",
