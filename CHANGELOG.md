@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.0.2
+
+### Patch Changes
+
+- a667540: re-add all export fields on root for old bundlers
+
 ## 3.0.1
 
 ### Patch Changes
