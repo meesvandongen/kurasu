@@ -1,5 +1,11 @@
 ## 3.0.0
 
+## 3.0.3
+
+### Patch Changes
+
+- f8114ac: fix usage in readme
+
 ## 3.0.2
 
 ### Patch Changes
