@@ -92,7 +92,8 @@ const Usage = () => (
 
 ```tsx
 import kurasu from "kurasu";
-const WarningButton = kurasu.button<{ warning: boolean }>(
+const WarningButton = kurasu<{ warning: boolean }>(
+  "button",
   (props) => props.warning && "bg-red-100"
 );
 
@@ -107,7 +108,8 @@ const Usage = () => (
 
 ```tsx
 import kurasu from "kurasu";
-const RoundedWarningButton = kurasu.button<{ warning: boolean }>(
+const RoundedWarningButton = kurasu<{ warning: boolean }>(
+  "button",
   (props, clsx) => clsx([props.warning && "bg-red-100", "rounded p-4"])
 );
 
