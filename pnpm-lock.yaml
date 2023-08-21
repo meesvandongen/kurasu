@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^2.26.1
     version: 2.26.1
   '@testing-library/jest-dom':
-    specifier: ^5.16.5
-    version: 5.16.5
+    specifier: ^6.0.0
+    version: 6.0.0(vitest@0.31.0)
   '@testing-library/react':
     specifier: ^14.0.0
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -54,10 +54,10 @@ devDependencies:
     version: 3.3.2
   tsup:
     specifier: ^7.0.0
-    version: 7.0.0(postcss@8.4.23)(typescript@5.1.3)
+    version: 7.0.0(postcss@8.4.23)(typescript@5.1.6)
   typescript:
     specifier: latest
-    version: 5.1.3
+    version: 5.1.6
   vitest:
     specifier: ^0.31.0
     version: 0.31.0(jsdom@22.0.0)
@@ -1133,19 +1133,33 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/jest-dom@5.16.5:
-    resolution: {integrity: sha512-N5ixQ2qKpi5OLYfwQmUb/5mSV9LneAcaUfp32pn4yCnpb8r/Yz0pXFPck21dIicKmi+ta5WRAknkZCfA8refMA==}
-    engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
+  /@testing-library/jest-dom@6.0.0(vitest@0.31.0):
+    resolution: {integrity: sha512-Ye2R3+/oM27jir8CzYPmuWdavTaKwNZcu0d22L9pO/vnOYE0wmrtpw79TQJa8H6gV8/i7yd+pLaqeLlA0rTMfg==}
+    engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
+    peerDependencies:
+      '@jest/globals': '>= 28'
+      '@types/jest': '>= 28'
+      jest: '>= 28'
+      vitest: '>= 0.32'
+    peerDependenciesMeta:
+      '@jest/globals':
+        optional: true
+      '@types/jest':
+        optional: true
+      jest:
+        optional: true
+      vitest:
+        optional: true
     dependencies:
       '@adobe/css-tools': 4.2.0
       '@babel/runtime': 7.21.5
-      '@types/testing-library__jest-dom': 5.14.5
       aria-query: 5.1.3
       chalk: 3.0.0
       css.escape: 1.5.1
       dom-accessibility-api: 0.5.16
       lodash: 4.17.21
       redent: 3.0.0
+      vitest: 0.31.0(jsdom@22.0.0)
     dev: true
 
   /@testing-library/react@14.0.0(react-dom@18.2.0)(react@18.2.0):
@@ -4624,7 +4638,7 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tsup@7.0.0(postcss@8.4.23)(typescript@5.1.3):
+  /tsup@7.0.0(postcss@8.4.23)(typescript@5.1.6):
     resolution: {integrity: sha512-yYARDRkPq07mO3YUXTvF12ISwWQG57Odve8aFEgLdHyeGungxuKxb19yf9G0W8y59SZFkLnRj1gkoVk1gd5fbQ==}
     engines: {node: '>=16.14'}
     hasBin: true
@@ -4655,7 +4669,7 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.32.0
       tree-kill: 1.2.2
-      typescript: 5.1.3
+      typescript: 5.1.6
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -4708,8 +4722,8 @@ packages:
       is-typed-array: 1.1.10
     dev: true
 
-  /typescript@5.1.3:
-    resolution: {integrity: sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw==}
+  /typescript@5.1.6:
+    resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
