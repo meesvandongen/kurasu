@@ -16,7 +16,7 @@
     "types": [
       "vitest/globals",
       "vitest/importMeta",
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom/vitest"
     ],
     "jsx": "react-jsx"
   },
